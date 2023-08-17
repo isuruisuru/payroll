@@ -4,10 +4,7 @@ import config.LoadDatabase;
 import entity.Employee;
 import jakarta.persistence.GeneratedValue;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import repository.EmployeeRepo;
 
@@ -26,6 +23,7 @@ public class EmployeeCtrl {
         return repository.findAll();
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @GetMapping("/{id}")
     public Employee one(@PathVariable Long id){
         return repository.findById(id)
